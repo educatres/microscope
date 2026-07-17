@@ -110,10 +110,12 @@ button.primary, #tutorialBtn {
   inset: 0;
   display: none;
   place-items: center;
+  grid-template-rows: minmax(0, 1fr) auto;
   margin: 0;
-  padding: 34px;
+  padding: clamp(12px, 3vw, 34px);
   background: linear-gradient(135deg, #f7fbfa, #eaf2f5);
   z-index: 1;
+  overflow: hidden;
 }
 
 #scene.parts-mode iframe,
@@ -125,8 +127,10 @@ button.primary, #tutorialBtn {
 
 .parts-diagram img {
   display: block;
-  max-width: min(100%, 760px);
-  max-height: calc(100% - 44px);
+  width: auto;
+  height: auto;
+  max-inline-size: min(100%, 900px);
+  max-block-size: min(100%, calc(100vh - 220px));
   object-fit: contain;
   border-radius: 12px;
   box-shadow: 0 18px 42px rgba(20,48,55,.16);
@@ -136,7 +140,8 @@ button.primary, #tutorialBtn {
   align-self: end;
   color: var(--muted);
   font-size: 12px;
-  margin-top: 10px;
+  margin-top: 8px;
+  text-align: center;
 }
 
 .scene-hint, .model-credit {
@@ -591,6 +596,11 @@ footer a { color: var(--accent); }
     max-height: 190px;
     overflow: auto;
   }
+
+  .parts-diagram img {
+    max-inline-size: 100%;
+    max-block-size: min(100%, calc(100vh - 180px));
+  }
 }
 
 @media (max-width: 520px) {
@@ -619,4 +629,12 @@ footer a { color: var(--accent); }
   }
   .model-story h2 { font-size: 16px; }
   .model-story p { font-size: 13px; }
+  .stage-card { min-height: min(680px, calc(100vh - 150px)); }
+  .parts-diagram { padding: 10px; }
+  .parts-diagram img {
+    max-inline-size: 100%;
+    max-block-size: calc(100% - 28px);
+    border-radius: 8px;
+  }
+  .parts-diagram figcaption { font-size: 11px; }
 }
