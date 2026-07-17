@@ -2,6 +2,11 @@
 
 一套可直接部署到 GitHub Pages 的純前端生物互動教材。學生可旋轉觀察 3D 複式顯微鏡、點擊辨認部件、抽換草履蟲、眼蟲、渦蟲與藻類玻片，並模擬倍率、倒像、亮度、粗調與細調對焦、玻片移動及目鏡視野。
 
+## 線上網站
+
+- GitHub Repository: https://github.com/educatres/microscope
+- GitHub Pages: https://educatres.github.io/microscope/
+
 ## 功能
 
 - Three.js 3D 顯微鏡，可旋轉、縮放與點擊部件
