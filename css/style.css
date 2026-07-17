@@ -117,7 +117,9 @@ button.primary, #tutorialBtn {
 }
 
 #scene.parts-mode iframe,
-#scene.parts-mode .model-credit { display: none; }
+#scene.parts-mode .model-credit,
+#scene.parts-mode .model-switch,
+#scene.parts-mode .model-story { display: none; }
 
 #scene.parts-mode .parts-diagram { display: grid; }
 
@@ -158,6 +160,55 @@ button.primary, #tutorialBtn {
   max-width: min(52%, 420px);
   font-size: 12px;
   text-decoration: none;
+}
+
+.model-switch {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  display: flex;
+  gap: 6px;
+  padding: 5px;
+  border-radius: 14px;
+  background: rgba(9,28,34,.76);
+  z-index: 2;
+}
+
+.model-option {
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: transparent;
+  color: #d9e8e6;
+}
+
+.model-option.active {
+  background: #fff;
+  color: var(--ink);
+}
+
+.model-story {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 58px;
+  max-width: 760px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(8,28,34,.82);
+  color: #fff;
+  z-index: 2;
+}
+
+.model-story h2 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.model-story p {
+  margin: 6px 0 0;
+  color: #d6e5e6;
+  font-size: 14px;
+  line-height: 1.55;
 }
 
 .part-label {
@@ -534,6 +585,12 @@ footer a { color: var(--accent); }
     max-width: 520px;
     margin: auto;
   }
+
+  .model-story {
+    max-width: none;
+    max-height: 190px;
+    overflow: auto;
+  }
 }
 
 @media (max-width: 520px) {
@@ -548,4 +605,18 @@ footer a { color: var(--accent); }
     width: auto;
   }
   .model-credit { bottom: 54px; }
+  .model-switch {
+    left: 10px;
+    right: 10px;
+    justify-content: center;
+  }
+  .model-story {
+    left: 10px;
+    right: 10px;
+    bottom: 96px;
+    max-height: 170px;
+    padding: 11px 12px;
+  }
+  .model-story h2 { font-size: 16px; }
+  .model-story p { font-size: 13px; }
 }

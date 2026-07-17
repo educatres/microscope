@@ -10,4 +10,5 @@
 
 ## 3D 模型來源
 
-- 顯微鏡 3D 模型：**Compound Microscope**，作者 **WheelchairDrift**，Sketchfab。授權：**Creative Commons Attribution (CC BY)**。模型頁：https://sketchfab.com/3d-models/compound-microscope-8bb65a9721e748c9864f37150527a8d9
+- 現代顯微鏡 3D 模型：**Microscope**，Sketchfab。模型頁：https://sketchfab.com/3d-models/microscope-c85ebf4d10844726bafc8d9f4364d211
+- 歷史顯微鏡 3D 模型：**Robert Hooke's Microscope (1665)**，作者 **olemolvig**，Sketchfab。授權：Creative Commons Attribution (CC BY)。模型頁：https://sketchfab.com/3d-models/robert-hookes-microscope-1665-be66b248b75c477faefd7e83b200a5e8

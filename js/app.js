@@ -6,6 +6,26 @@ const specimens={
  planaria:{name:'渦蟲',url:'https://commons.wikimedia.org/wiki/Special:FilePath/Planaria%20Flatworm%20Labeled%20Microscope.jpg?width=1600',ideal:{c:61,f:47},desc:'扁形動物，可觀察眼點與分枝消化腔。'},
  algae:{name:'藻類',url:'https://commons.wikimedia.org/wiki/Special:FilePath/Mikrofoto.de-alge2.jpg?width=1600',ideal:{c:51,f:60},desc:'柵藻等綠藻，可觀察細胞群體排列。'}
 };
+const models={
+ modern:{
+  name:'現代複式顯微鏡',
+  id:'c85ebf4d10844726bafc8d9f4364d211',
+  href:'https://sketchfab.com/3d-models/microscope-c85ebf4d10844726bafc8d9f4364d211',
+  credit:'Microscope · Sketchfab',
+  title:'現代複式顯微鏡',
+  story:'現代複式顯微鏡使用目鏡與多個物鏡組合放大，載物臺、調焦輪、聚光器與內建光源讓觀察更穩定、可重複，也更適合課堂實驗。',
+  compare:'和 Hooke 的顯微鏡相比，現代顯微鏡通常有可切換倍率的物鏡、較穩定的照明與精細調焦機構，能更容易得到明亮且清晰的影像。'
+ },
+ hooke:{
+  name:"Hooke 1665",
+  id:'be66b248b75c477faefd7e83b200a5e8',
+  href:'https://sketchfab.com/3d-models/robert-hookes-microscope-1665-be66b248b75c477faefd7e83b200a5e8',
+  credit:"Robert Hooke's Microscope (1665) by olemolvig · CC BY",
+  title:"Robert Hooke's Microscope (1665)",
+  story:'Robert Hooke 在 1665 年出版《Micrographia》，用顯微鏡描繪跳蚤、軟木等微小世界，讓許多人第一次看見肉眼之外的結構。他觀察軟木時使用了「cell」這個詞，後來成為生物學中「細胞」概念的重要起點。',
+  compare:'Hooke 的顯微鏡是早期複式顯微鏡，照明、鏡片品質、穩定度與倍率切換都不如現代儀器；它更像一台精巧的探索工具，而現代顯微鏡則是可標準化操作、可精準調焦與控制光線的實驗設備。'
+ }
+};
 const parts=[
  {no:1,name:'目鏡',desc:'眼睛觀察的位置，本教材可切換 10×、15×。'},
  {no:2,name:'旋轉盤／物鏡轉換器',desc:'轉動後可切換不同倍率的物鏡。'},
@@ -21,11 +41,23 @@ $('#partsList').innerHTML=parts.map((p,i)=>`<div class="part-item" data-part-ind
 
 function mountOnlineModel(){
  const sceneEl=$('#scene');
- const embed='https://sketchfab.com/models/8bb65a9721e748c9864f37150527a8d9/embed?autostart=1&preload=1&ui_theme=dark&ui_infos=0&ui_watermark=0';
  const diagram='https://commons.wikimedia.org/wiki/Special:FilePath/Optical%20microscope%20nikon%20alphaphot.jpg?width=1200';
- sceneEl.innerHTML=`<iframe title="Compound Microscope 3D model" src="${embed}" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe><figure id="partsDiagram" class="parts-diagram"><img src="${diagram}" alt="有 1 到 9 數字編號的 Nikon Alphaphot 光學顯微鏡照片"><figcaption>Optical microscope nikon alphaphot · GcG(jawp) · Public domain</figcaption></figure><a class="model-credit" href="https://sketchfab.com/3d-models/compound-microscope-8bb65a9721e748c9864f37150527a8d9" target="_blank" rel="noopener">Compound Microscope by WheelchairDrift · CC BY</a>`;
+ sceneEl.innerHTML=`<iframe id="modelFrame" title="3D microscope model" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe><div class="model-switch" aria-label="切換 3D 顯微鏡模型"><button class="model-option active" data-model="modern">現代</button><button class="model-option" data-model="hooke">Hooke 1665</button></div><article id="modelStory" class="model-story"></article><figure id="partsDiagram" class="parts-diagram"><img src="${diagram}" alt="有 1 到 9 數字編號的 Nikon Alphaphot 光學顯微鏡照片"><figcaption>Optical microscope nikon alphaphot · GcG(jawp) · Public domain</figcaption></figure><a class="model-credit" target="_blank" rel="noopener"></a>`;
 }
 mountOnlineModel();
+
+function setModel(key){
+ const model=models[key];
+ const src=`https://sketchfab.com/models/${model.id}/embed?autostart=1&preload=1&ui_theme=dark&ui_infos=0&ui_watermark=0`;
+ $('#modelFrame').src=src;
+ $('#modelFrame').title=model.title;
+ $('.model-credit').href=model.href;
+ $('.model-credit').textContent=model.credit;
+ $('#modelStory').innerHTML=`<h2>${model.title}</h2><p>${model.story}</p><p>${model.compare}</p>`;
+ $$('.model-option').forEach(btn=>btn.classList.toggle('active',btn.dataset.model===key));
+}
+setModel('modern');
+$$('.model-option').forEach(btn=>btn.onclick=()=>setModel(btn.dataset.model));
 
 function setPartHighlight(index){
  $$('.part-item').forEach((el,i)=>el.classList.toggle('active',i===index));
