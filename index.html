@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="可部署於 GitHub Pages 的 3D 複式顯微鏡互動操作教材" />
+  <title>3D 複式顯微鏡互動實驗室</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div><span class="badge">國中生物互動教材</span><h1>3D 複式顯微鏡互動實驗室</h1></div>
+  <div class="header-actions"><button id="tutorialBtn">操作導引</button><button id="resetBtn" class="ghost">重設</button></div>
+</header>
+
+<main class="layout">
+  <section class="stage-card">
+    <div id="scene" aria-label="3D 顯微鏡操作區"></div>
+    <div class="scene-hint">拖曳旋轉｜滾輪縮放｜點擊發光部件查看名稱</div>
+    <div id="partLabel" class="part-label hidden"></div>
+  </section>
+
+  <aside class="control-card">
+    <nav class="tabs" aria-label="功能分頁">
+      <button class="tab active" data-tab="operate">操作</button>
+      <button class="tab" data-tab="parts">部件</button>
+      <button class="tab" data-tab="missions">任務</button>
+      <button class="tab" data-tab="learn">原理</button>
+    </nav>
+
+    <div class="tab-panel active" id="operate">
+      <div class="status-row"><span>目前總倍率</span><strong id="totalMag">40×</strong></div>
+      <label>玻片標本
+        <select id="specimen">
+          <option value="paramecium">草履蟲</option><option value="euglena">眼蟲</option>
+          <option value="planaria">渦蟲</option><option value="algae">藻類</option>
+        </select>
+      </label>
+      <div class="button-grid">
+        <button class="objective active" data-mag="4">4× 低倍</button><button class="objective" data-mag="10">10×</button><button class="objective" data-mag="40">40× 高倍</button>
+      </div>
+      <label>目鏡倍率 <select id="eyepiece"><option value="10">10×</option><option value="15">15×</option></select></label>
+      <label>粗調節輪 <output id="coarseOut">50</output><input id="coarse" type="range" min="0" max="100" value="50"></label>
+      <label>細調節輪 <output id="fineOut">50</output><input id="fine" type="range" min="0" max="100" value="50"></label>
+      <label>光圈大小 <output id="apertureOut">65%</output><input id="aperture" type="range" min="10" max="100" value="65"></label>
+      <label>反光鏡角度 <output id="mirrorOut">50</output><input id="mirror" type="range" min="0" max="100" value="50"></label>
+      <div class="xy-controls">
+        <span>移動載玻片</span>
+        <div class="dpad"><button data-move="up">▲</button><button data-move="left">◀</button><button data-move="center">◎</button><button data-move="right">▶</button><button data-move="down">▼</button></div>
+      </div>
+      <button id="lookBtn" class="primary">觀看目鏡視野</button>
+      <p id="feedback" class="feedback">先使用 4× 物鏡尋找標本，再調整光線與焦距。</p>
+    </div>
+
+    <div class="tab-panel" id="parts"><div id="partsList" class="parts-list"></div></div>
+    <div class="tab-panel" id="missions">
+      <div class="score">完成度 <strong id="score">0</strong>/6</div><ol id="missionList"></ol>
+      <button id="checkMission" class="primary">檢查目前操作</button>
+    </div>
+    <div class="tab-panel" id="learn">
+      <article><h2>成像與倍率</h2><p>複式顯微鏡的總倍率＝目鏡倍率 × 物鏡倍率。倍率越高，視野通常越小、亮度越低，景物移動也更明顯。</p><h2>為何視野方向相反？</h2><p>顯微鏡形成上下、左右相反的倒像。因此載玻片向右移，視野中的影像會向左移。</p><h2>正確操作重點</h2><p>先用低倍物鏡、從側面確認物鏡不會撞到玻片；利用粗調找到影像，再用細調使輪廓清楚。切到高倍後只應使用細調節輪。</p></article>
+    </div>
+  </aside>
+</main>
+
+<div id="viewerModal" class="modal hidden" role="dialog" aria-modal="true" aria-label="顯微鏡視野">
+  <div class="viewer-shell">
+    <button id="closeViewer" class="close">×</button>
+    <div class="eyepiece-ring"><div id="microscopeView" class="microscope-view"><div class="crosshair"></div><div id="scaleBar" class="scale-bar"><span></span><b>200 µm</b></div></div></div>
+    <div class="viewer-readout"><strong id="viewTitle">草履蟲</strong><span id="viewInfo">40×｜亮度適中｜尚未對焦</span></div>
+  </div>
+</div>
+
+<div id="tutorial" class="modal hidden"><div class="tutorial-box"><button id="closeTutorial" class="close">×</button><h2>顯微鏡操作六步驟</h2><ol><li>選擇玻片並固定在載物臺。</li><li>轉到 4× 低倍物鏡。</li><li>調整反光鏡與光圈，使視野明亮但不過曝。</li><li>使用粗調節輪找到影像。</li><li>用細調節輪讓輪廓清晰。</li><li>將目標移至中央後，再切換高倍並只用細調。</li></ol><button id="startTutorial" class="primary">開始練習</button></div></div>
+
+<footer>影像來源與授權請見 <a href="CREDITS.md">CREDITS.md</a>。本教材為純前端專案，可直接部署於 GitHub Pages。</footer>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.166.1/examples/jsm/"}}</script>
+<script type="module" src="js/app.js"></script>
+</body></html>
