@@ -66,8 +66,28 @@
 <div id="viewerModal" class="modal hidden" role="dialog" aria-modal="true" aria-label="顯微鏡視野">
   <div class="viewer-shell">
     <button id="closeViewer" class="close">×</button>
-    <div class="eyepiece-ring"><div id="microscopeView" class="microscope-view"><div class="crosshair"></div><div id="scaleBar" class="scale-bar"><span></span><b>200 µm</b></div></div></div>
-    <div class="viewer-readout"><strong id="viewTitle">草履蟲</strong><span id="viewInfo">40×｜亮度適中｜尚未對焦</span></div>
+    <div class="viewer-layout">
+      <div>
+        <div class="eyepiece-ring"><div id="microscopeView" class="microscope-view"><div class="crosshair"></div><div id="scaleBar" class="scale-bar"><span></span><b>200 µm</b></div></div></div>
+        <div class="viewer-readout"><strong id="viewTitle">草履蟲</strong><span id="viewInfo">40×｜亮度適中｜尚未對焦</span></div>
+      </div>
+      <div class="viewer-controls">
+        <div class="status-row"><span>總倍率</span><strong id="viewTotalMag">40×</strong></div>
+        <div class="button-grid">
+          <button class="view-objective active" data-view-objective="4">4×</button>
+          <button class="view-objective" data-view-objective="10">10×</button>
+          <button class="view-objective" data-view-objective="40">40×</button>
+        </div>
+        <label>粗調節輪 <output id="viewCoarseOut">50</output><input id="viewCoarse" type="range" min="0" max="100" value="50"></label>
+        <label>細調節輪 <output id="viewFineOut">50</output><input id="viewFine" type="range" min="0" max="100" value="50"></label>
+        <label>光圈大小 <output id="viewApertureOut">65%</output><input id="viewAperture" type="range" min="10" max="100" value="65"></label>
+        <label>反光鏡角度 <output id="viewMirrorOut">50</output><input id="viewMirror" type="range" min="0" max="100" value="50"></label>
+        <div class="xy-controls">
+          <span>移動載玻片</span>
+          <div class="dpad"><button data-view-move="up">▲</button><button data-view-move="left">◀</button><button data-view-move="center">◎</button><button data-view-move="right">▶</button><button data-view-move="down">▼</button></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
