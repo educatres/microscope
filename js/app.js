@@ -7,24 +7,23 @@ const specimens={
  algae:{name:'藻類',url:'https://commons.wikimedia.org/wiki/Special:FilePath/Mikrofoto.de-alge2.jpg?width=1600',ideal:{c:51,f:60},desc:'柵藻等綠藻，可觀察細胞群體排列。'}
 };
 const parts=[
- {name:'目鏡',desc:'眼睛觀察的位置，本教材可切換 10×、15×。'},
- {name:'鏡筒',desc:'保持目鏡與物鏡在正確光路上。'},
- {name:'旋轉盤／物鏡',desc:'切換 4×、10×、40× 物鏡。'},
- {name:'載物臺',desc:'放置載玻片，中央孔洞讓光通過。'},
- {name:'載玻片',desc:'承載標本的長方形玻璃片。'},
- {name:'蓋玻片',desc:'覆蓋標本，避免液滴過厚並保護物鏡。'},
- {name:'光圈',desc:'控制通過標本的光量。'},
- {name:'反光鏡',desc:'將外界光線反射進入鏡筒。'},
- {name:'粗調節輪',desc:'快速改變鏡筒與標本距離，適合低倍找像。'},
- {name:'細調節輪',desc:'小幅調焦，使影像更清晰，高倍時應使用它。'}
+ {no:1,name:'目鏡',desc:'眼睛觀察的位置，本教材可切換 10×、15×。'},
+ {no:2,name:'旋轉盤／物鏡轉換器',desc:'轉動後可切換不同倍率的物鏡。'},
+ {no:3,name:'物鏡',desc:'接近標本的鏡頭，負責形成主要放大影像。'},
+ {no:4,name:'粗調節輪',desc:'快速改變鏡筒與標本距離，適合低倍找像。'},
+ {no:5,name:'細調節輪',desc:'小幅調焦，使影像更清晰，高倍時應使用它。'},
+ {no:6,name:'載物臺',desc:'放置玻片標本的平台，中央孔洞讓光線通過。'},
+ {no:7,name:'光源',desc:'提供向上穿過標本的照明。'},
+ {no:8,name:'聚光器／光圈',desc:'集中並調節進入標本的光量。'},
+ {no:9,name:'玻片夾／移動尺',desc:'固定玻片並協助左右、前後移動標本。'}
 ];
-$('#partsList').innerHTML=parts.map((p,i)=>`<div class="part-item" data-part-index="${i}" tabindex="0"><b>${p.name}</b><br>${p.desc}</div>`).join('');
+$('#partsList').innerHTML=parts.map((p,i)=>`<div class="part-item" data-part-index="${i}" tabindex="0"><span class="part-number">${p.no}</span><div><b>${p.name}</b><br>${p.desc}</div></div>`).join('');
 
 function mountOnlineModel(){
  const sceneEl=$('#scene');
  const embed='https://sketchfab.com/models/8bb65a9721e748c9864f37150527a8d9/embed?autostart=1&preload=1&ui_theme=dark&ui_infos=0&ui_watermark=0';
- const diagram='https://commons.wikimedia.org/wiki/Special:FilePath/Parts%20of%20a%20Microscope%20%28english%29.png?width=1400';
- sceneEl.innerHTML=`<iframe title="Compound Microscope 3D model" src="${embed}" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe><figure id="partsDiagram" class="parts-diagram"><img src="${diagram}" alt="已標記顯微鏡部件名稱的 2D 圖片"><figcaption>Parts of a Microscope (english) · Wikimedia Commons · CC0</figcaption></figure><a class="model-credit" href="https://sketchfab.com/3d-models/compound-microscope-8bb65a9721e748c9864f37150527a8d9" target="_blank" rel="noopener">Compound Microscope by WheelchairDrift · CC BY</a>`;
+ const diagram='https://commons.wikimedia.org/wiki/Special:FilePath/Optical%20microscope%20nikon%20alphaphot.jpg?width=1200';
+ sceneEl.innerHTML=`<iframe title="Compound Microscope 3D model" src="${embed}" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe><figure id="partsDiagram" class="parts-diagram"><img src="${diagram}" alt="有 1 到 9 數字編號的 Nikon Alphaphot 光學顯微鏡照片"><figcaption>Optical microscope nikon alphaphot · GcG(jawp) · Public domain</figcaption></figure><a class="model-credit" href="https://sketchfab.com/3d-models/compound-microscope-8bb65a9721e748c9864f37150527a8d9" target="_blank" rel="noopener">Compound Microscope by WheelchairDrift · CC BY</a>`;
 }
 mountOnlineModel();
 
