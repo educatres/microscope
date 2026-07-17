@@ -7,4 +7,6 @@
 - 渦蟲：**Planaria Flatworm Labeled Microscope.jpg**，作者 Iceclanl，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Planaria_Flatworm_Labeled_Microscope.jpg
 - 藻類：**Mikrofoto.de-alge2.jpg**，作者 Frank Fox，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Mikrofoto.de-alge2.jpg
 
-3D 顯微鏡模型由本專案使用 Three.js 基礎幾何體即時建立，未使用外部 3D 模型。
+## 3D 模型來源
+
+- 顯微鏡 3D 模型：**Compound Microscope**，作者 **WheelchairDrift**，Sketchfab。授權：**Creative Commons Attribution (CC BY)**。模型頁：https://sketchfab.com/3d-models/compound-microscope-8bb65a9721e748c9864f37150527a8d9
