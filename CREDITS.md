@@ -6,6 +6,7 @@
 - 眼蟲：**Euglena-1.jpg**，作者 Fritzmann2002，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Euglena-1.jpg
 - 渦蟲：**Planaria Flatworm Labeled Microscope.jpg**，作者 Iceclanl，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Planaria_Flatworm_Labeled_Microscope.jpg
 - 藻類：**Mikrofoto.de-alge2.jpg**，作者 Frank Fox，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Mikrofoto.de-alge2.jpg
+- 部件分頁 2D 顯微鏡圖：**Parts of a Microscope (english).png**，作者 OpenStax，Wikimedia Commons。授權：CC0 / public domain。檔案頁：https://commons.wikimedia.org/wiki/File:Parts_of_a_Microscope_(english).png
 
 ## 3D 模型來源
 
