@@ -6,15 +6,47 @@ const specimens={
  planaria:{name:'渦蟲',url:'https://commons.wikimedia.org/wiki/Special:FilePath/Planaria%20Flatworm%20Labeled%20Microscope.jpg?width=1600',ideal:{c:61,f:47},desc:'扁形動物，可觀察眼點與分枝消化腔。'},
  algae:{name:'藻類',url:'https://commons.wikimedia.org/wiki/Special:FilePath/Mikrofoto.de-alge2.jpg?width=1600',ideal:{c:51,f:60},desc:'柵藻等綠藻，可觀察細胞群體排列。'}
 };
-const parts=[['目鏡','眼睛觀察的位置，本教材可切換 10×、15×。'],['鏡筒','保持目鏡與物鏡在正確光路上。'],['旋轉盤／物鏡','切換 4×、10×、40× 物鏡。'],['載物臺','放置載玻片，中央孔洞讓光通過。'],['載玻片','承載標本的長方形玻璃片。'],['蓋玻片','覆蓋標本，避免液滴過厚並保護物鏡。'],['光圈','控制通過標本的光量。'],['反光鏡','將外界光線反射進入鏡筒。'],['粗調節輪','快速改變鏡筒與標本距離，適合低倍找像。'],['細調節輪','小幅調焦，使影像更清晰，高倍時應使用它。']];
-$('#partsList').innerHTML=parts.map(([a,b])=>`<div class="part-item"><b>${a}</b><br>${b}</div>`).join('');
+const parts=[
+ {name:'目鏡',desc:'眼睛觀察的位置，本教材可切換 10×、15×。',x:52,y:16},
+ {name:'鏡筒',desc:'保持目鏡與物鏡在正確光路上。',x:51,y:31},
+ {name:'旋轉盤／物鏡',desc:'切換 4×、10×、40× 物鏡。',x:50,y:46},
+ {name:'載物臺',desc:'放置載玻片，中央孔洞讓光通過。',x:49,y:59},
+ {name:'載玻片',desc:'承載標本的長方形玻璃片。',x:55,y:56},
+ {name:'蓋玻片',desc:'覆蓋標本，避免液滴過厚並保護物鏡。',x:58,y:52},
+ {name:'光圈',desc:'控制通過標本的光量。',x:47,y:66},
+ {name:'反光鏡',desc:'將外界光線反射進入鏡筒。',x:45,y:78},
+ {name:'粗調節輪',desc:'快速改變鏡筒與標本距離，適合低倍找像。',x:68,y:40},
+ {name:'細調節輪',desc:'小幅調焦，使影像更清晰，高倍時應使用它。',x:73,y:45}
+];
+$('#partsList').innerHTML=parts.map((p,i)=>`<div class="part-item" data-part-index="${i}" tabindex="0"><b>${p.name}</b><br>${p.desc}</div>`).join('');
 
 function mountOnlineModel(){
  const sceneEl=$('#scene');
  const embed='https://sketchfab.com/models/8bb65a9721e748c9864f37150527a8d9/embed?autostart=1&preload=1&ui_theme=dark&ui_infos=0&ui_watermark=0';
- sceneEl.innerHTML=`<iframe title="Compound Microscope 3D model" src="${embed}" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe><a class="model-credit" href="https://sketchfab.com/3d-models/compound-microscope-8bb65a9721e748c9864f37150527a8d9" target="_blank" rel="noopener">Compound Microscope by WheelchairDrift · CC BY</a>`;
+ sceneEl.innerHTML=`<iframe title="Compound Microscope 3D model" src="${embed}" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen></iframe><div id="modelMarkers" class="model-markers" aria-label="顯微鏡部件標記"></div><a class="model-credit" href="https://sketchfab.com/3d-models/compound-microscope-8bb65a9721e748c9864f37150527a8d9" target="_blank" rel="noopener">Compound Microscope by WheelchairDrift · CC BY</a>`;
 }
 mountOnlineModel();
+
+$('#modelMarkers').innerHTML=parts.map((p,i)=>`<button class="model-marker" type="button" data-marker-index="${i}" style="left:${p.x}%;top:${p.y}%"><span>${i+1}</span><b>${p.name}</b></button>`).join('');
+function setPartHighlight(index){
+ $$('.part-item').forEach((el,i)=>el.classList.toggle('active',i===index));
+ $$('.model-marker').forEach((el,i)=>el.classList.toggle('active',i===index));
+ if(index>=0){
+  const p=parts[index];
+  $('#partLabel').innerHTML=`<strong>${p.name}</strong><br><small>${p.desc}</small>`;
+  $('#partLabel').classList.remove('hidden');
+ }
+}
+function clearPartHighlight(){
+ $$('.part-item,.model-marker').forEach(el=>el.classList.remove('active'));
+ $('#partLabel').classList.add('hidden');
+}
+function setPartsMode(enabled){
+ $('#scene').classList.toggle('parts-mode',enabled);
+ if(!enabled)clearPartHighlight();
+}
+$$('.part-item').forEach(el=>{const i=+el.dataset.partIndex;el.onmouseenter=()=>setPartHighlight(i);el.onfocus=()=>setPartHighlight(i);el.onclick=()=>setPartHighlight(i);el.onmouseleave=()=>{if(!el.matches(':focus'))clearPartHighlight()}});
+$$('.model-marker').forEach(el=>{const i=+el.dataset.markerIndex;el.onmouseenter=()=>setPartHighlight(i);el.onfocus=()=>setPartHighlight(i);el.onclick=()=>setPartHighlight(i);el.onmouseleave=()=>{if(!el.matches(':focus'))clearPartHighlight()}});
 
 function focusError(){const s=specimens[state.specimen].ideal;return Math.abs(state.coarse-s.c)*1.25+Math.abs(state.fine-s.f)*.8+(state.objective===40?Math.abs(state.coarse-s.c)*1.2:0)}
 function brightness(){return Math.max(.12,Math.min(1.25,(state.aperture/70)*(1-Math.abs(state.mirror-55)/110)/(1+Math.log10(state.objective)*.18)))}
@@ -26,7 +58,7 @@ function showView(){state.viewed=true;$('#viewerModal').classList.remove('hidden
 function setObjective(v){state.objective=v;update()}
 function setRange(id,value){state[id]=+value;update()}
 function moveStage(d,step=.12){if(d==='up')state.y-=step;if(d==='down')state.y+=step;if(d==='left')state.x+=step;if(d==='right')state.x-=step;if(d==='center')state.x=state.y=0;state.x=Math.max(-1,Math.min(1,state.x));state.y=Math.max(-1,Math.min(1,state.y));update()}
-$$('.tab').forEach(b=>b.onclick=()=>{$$('.tab,.tab-panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.tab).classList.add('active')});
+$$('.tab').forEach(b=>b.onclick=()=>{$$('.tab,.tab-panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.tab).classList.add('active');setPartsMode(b.dataset.tab==='parts')});
 $$('.objective').forEach(b=>b.onclick=()=>setObjective(+b.dataset.mag));
 $$('.view-objective').forEach(b=>b.onclick=()=>setObjective(+b.dataset.viewObjective));
 ['coarse','fine','aperture','mirror'].forEach(id=>{$('#'+id).oninput=e=>setRange(id,e.target.value);$('#view'+id[0].toUpperCase()+id.slice(1)).oninput=e=>setRange(id,e.target.value)});
