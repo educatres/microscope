@@ -89,6 +89,10 @@ button.primary, #tutorialBtn {
   min-height: 680px;
 }
 
+.stage-card.mission-stage-card {
+  min-height: 840px;
+}
+
 #scene {
   position: absolute;
   inset: 0;
@@ -98,7 +102,7 @@ button.primary, #tutorialBtn {
   background: #0f1f24;
 }
 
-#scene iframe {
+#scene > iframe {
   display: block;
   width: 100%;
   height: 100%;
@@ -124,6 +128,24 @@ button.primary, #tutorialBtn {
 #scene.parts-mode .model-story { display: none; }
 
 #scene.parts-mode .parts-diagram { display: grid; }
+
+#scene.missions-mode > iframe,
+#scene.missions-mode .model-credit,
+#scene.missions-mode .model-switch,
+#scene.missions-mode .parts-diagram { display: none; }
+
+#scene.missions-mode ~ .scene-hint { display: none; }
+
+.inline-viewer-host {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: #13272d;
+  overflow: auto;
+  z-index: 1;
+}
 
 .parts-diagram img {
   display: block;
@@ -472,6 +494,50 @@ output {
   text-align: center;
 }
 
+.viewer-shell.inline-viewer-shell {
+  width: 100%;
+  max-width: 960px;
+  max-height: calc(100% - 4px);
+  padding: 14px;
+  border-radius: 18px;
+  box-shadow: none;
+}
+
+.inline-viewer-shell .eyepiece-ring {
+  width: min(40vw, 450px);
+}
+
+.inline-viewer-shell .viewer-layout {
+  gap: 14px;
+}
+
+.inline-viewer-shell .status-row {
+  padding: 9px 12px;
+  margin-bottom: 8px;
+}
+
+.inline-viewer-shell .viewer-controls {
+  padding: 12px;
+}
+
+.inline-viewer-shell .viewer-controls label {
+  margin: 8px 0 3px;
+}
+
+.inline-viewer-shell .button-grid {
+  margin-top: 8px;
+}
+
+.inline-viewer-shell .xy-controls {
+  margin: 10px 0;
+}
+
+.inline-viewer-shell .feedback {
+  margin: 8px 0 0;
+  padding: 8px;
+  font-size: 13px;
+}
+
 .tutorial-box {
   max-width: 760px;
   background: white;
@@ -641,6 +707,7 @@ footer a { color: var(--accent); }
   }
 
   .stage-card { min-height: 520px; }
+  .stage-card.mission-stage-card { min-height: 920px; }
   .control-card { max-height: none; }
 
   .topbar {
