@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="可部署於 GitHub Pages 的 3D 複式顯微鏡互動操作教材" />
   <title>3D 複式顯微鏡互動實驗室</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='48' font-size='48'%3E%F0%9F%94%AC%3C/text%3E%3C/svg%3E" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -22,34 +23,19 @@
 
   <aside class="control-card">
     <nav class="tabs" aria-label="功能分頁">
-      <button class="tab active" data-tab="operate">操作</button>
+      <button class="tab active" data-tab="operate">顯微鏡的外觀</button>
       <button class="tab" data-tab="parts">部件</button>
       <button class="tab" data-tab="missions">任務</button>
       <button class="tab" data-tab="learn">原理</button>
     </nav>
 
     <div class="tab-panel active" id="operate">
-      <div class="status-row"><span>目前總倍率</span><strong id="totalMag">40×</strong></div>
-      <label>玻片標本
-        <select id="specimen">
-          <option value="paramecium">草履蟲</option><option value="euglena">眼蟲</option>
-          <option value="planaria">渦蟲</option><option value="algae">藻類</option>
-        </select>
-      </label>
-      <div class="button-grid">
-        <button class="objective active" data-mag="4">4× 低倍</button><button class="objective" data-mag="10">10×</button><button class="objective" data-mag="40">40× 高倍</button>
-      </div>
-      <label>目鏡倍率 <select id="eyepiece"><option value="10">10×</option><option value="15">15×</option></select></label>
-      <label>粗調節輪 <output id="coarseOut">50</output><input id="coarse" type="range" min="0" max="100" value="50"></label>
-      <label>細調節輪 <output id="fineOut">50</output><input id="fine" type="range" min="0" max="100" value="50"></label>
-      <label>光圈大小 <output id="apertureOut">65%</output><input id="aperture" type="range" min="10" max="100" value="65"></label>
-      <label>反光鏡角度 <output id="mirrorOut">50</output><input id="mirror" type="range" min="0" max="100" value="50"></label>
-      <div class="xy-controls">
-        <span>移動載玻片</span>
-        <div class="dpad"><button data-move="up">▲</button><button data-move="left">◀</button><button data-move="center">◎</button><button data-move="right">▶</button><button data-move="down">▼</button></div>
-      </div>
+      <article id="modelStory" class="model-story-panel"></article>
+      <figure class="hooke-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/13_Portrait_of_Robert_Hooke.JPG/960px-13_Portrait_of_Robert_Hooke.JPG" alt="Robert Hooke memorial portrait">
+        <figcaption>Robert Hooke reconstructed memorial portrait · Wikimedia Commons</figcaption>
+      </figure>
       <button id="lookBtn" class="primary">觀看目鏡視野</button>
-      <p id="feedback" class="feedback">先使用 4× 物鏡尋找標本，再調整光線與焦距。</p>
     </div>
 
     <div class="tab-panel" id="parts"><div id="partsList" class="parts-list"></div></div>
@@ -74,6 +60,7 @@
       <div class="viewer-controls">
         <div class="status-row"><span>總倍率</span><strong id="viewTotalMag">40×</strong></div>
         <label>玻片標本 <select id="viewSpecimen"></select></label>
+        <label>目鏡倍率 <select id="eyepiece"><option value="10">10×</option><option value="15">15×</option></select></label>
         <div class="button-grid">
           <button class="view-objective active" data-view-objective="4">4×</button>
           <button class="view-objective" data-view-objective="10">10×</button>
@@ -87,6 +74,7 @@
           <span>移動載玻片</span>
           <div class="dpad"><button data-view-move="up">▲</button><button data-view-move="left">◀</button><button data-view-move="center">◎</button><button data-view-move="right">▶</button><button data-view-move="down">▼</button></div>
         </div>
+        <p id="feedback" class="feedback">先使用 4× 物鏡尋找標本，再調整光線與焦距。</p>
       </div>
     </div>
   </div>

@@ -12,6 +12,7 @@
 - 植物細胞：**Elodea cells under microscope.jpg**，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Elodea_cells_under_microscope.jpg
 - 軟木塞：**Cork Micrographia Hooke.png**，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Cork_Micrographia_Hooke.png
 - 部件分頁 2D 顯微鏡圖：**Optical microscope nikon alphaphot.jpg**，作者 GcG(jawp)，Wikimedia Commons。授權：public domain。檔案頁：https://commons.wikimedia.org/wiki/File:Optical_microscope_nikon_alphaphot.jpg
+- Robert Hooke 照片：**13 Portrait of Robert Hooke.JPG**，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:13_Portrait_of_Robert_Hooke.JPG
 
 ## 影片來源
 
