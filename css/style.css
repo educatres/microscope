@@ -477,6 +477,17 @@ output {
 
 .microscope-view.dragging { cursor: grabbing; }
 
+.video-view {
+  position: absolute;
+  left: -9%;
+  top: -9%;
+  width: 118%;
+  height: 118%;
+  border: 0;
+  transform-origin: center;
+  transition: transform .18s ease;
+}
+
 .microscope-view:after {
   content: "";
   position: absolute;
@@ -551,6 +562,18 @@ output {
 }
 
 .viewer-controls label { margin: 10px 0 4px; }
+.viewer-controls input:disabled,
+.tab-panel input:disabled {
+  cursor: not-allowed;
+  opacity: .45;
+}
+
+.view-objective:disabled {
+  cursor: not-allowed;
+  opacity: .5;
+  transform: none;
+}
+
 .viewer-controls .button-grid { grid-template-columns: repeat(3, 1fr); }
 .viewer-controls .xy-controls { text-align: center; }
 .parts-list, .tutorial-box ol { font-size: 15px; }
