@@ -260,28 +260,75 @@ button.primary, #tutorialBtn {
   font-size: 15px;
 }
 
-.hooke-card {
-  margin: 14px 0;
-  padding: 0;
+.hooke-portrait {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 10px;
+  align-items: center;
+  margin: 2px 0;
+  padding: 8px;
   border: 1px solid var(--line);
-  border-radius: 12px;
-  overflow: hidden;
+  border-radius: 10px;
   background: #fff;
 }
 
-.hooke-card img {
+.hooke-portrait img {
   display: block;
-  width: 100%;
-  aspect-ratio: 4 / 3;
+  width: 92px;
+  aspect-ratio: 1;
   object-fit: cover;
   object-position: center 18%;
+  border-radius: 8px;
 }
 
-.hooke-card figcaption {
-  padding: 8px 10px;
+.hooke-portrait figcaption {
   color: var(--muted);
   font-size: 12px;
   line-height: 1.45;
+}
+
+.model-video-grid {
+  display: grid;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.model-video-card {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: inherit;
+  text-decoration: none;
+}
+
+.model-video-card img {
+  display: block;
+  width: 96px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 7px;
+}
+
+.model-video-card b,
+.model-video-card small {
+  display: block;
+  line-height: 1.35;
+}
+
+.model-video-card b {
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.model-video-card small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .part-label {
@@ -774,4 +821,10 @@ footer a { color: var(--accent); }
     border-radius: 8px;
   }
   .parts-diagram figcaption { font-size: 11px; }
+  .hooke-portrait,
+  .model-video-card {
+    grid-template-columns: 74px 1fr;
+  }
+  .hooke-portrait img { width: 74px; }
+  .model-video-card img { width: 74px; }
 }

@@ -20,7 +20,12 @@ const models={
   credit:'Microscope · Sketchfab',
   title:'現代複式顯微鏡',
   story:'現代複式顯微鏡使用目鏡與多個物鏡組合放大，載物臺、調焦輪、聚光器與內建光源讓觀察更穩定、可重複，也更適合課堂實驗。',
-  compare:'和 Hooke 的顯微鏡相比，現代顯微鏡通常有可切換倍率的物鏡、較穩定的照明與精細調焦機構，能更容易得到明亮且清晰的影像。'
+  compare:'和 Hooke 的顯微鏡相比，現代顯微鏡通常有可切換倍率的物鏡、較穩定的照明與精細調焦機構，能更容易得到明亮且清晰的影像。',
+  videos:[
+   {id:'29guENxstn4',title:'國中生物｜認識顯微鏡',source:'YouTube：台菜一姐'},
+   {id:'7reBPZIShS4',title:'複式顯微鏡操作流程教學',source:'YouTube：Chihhsiang Chien'},
+   {id:'7nvCrQZWDkw',title:'光學儀器－複式顯微鏡',source:'YouTube：廖家立'}
+  ]
  },
  hooke:{
   name:"Hooke 1665",
@@ -29,7 +34,15 @@ const models={
   credit:"Robert Hooke's Microscope (1665) by olemolvig · CC BY",
   title:"Robert Hooke's Microscope (1665)",
   story:'Robert Hooke 在 1665 年出版《Micrographia》，用顯微鏡描繪跳蚤、軟木等微小世界，讓許多人第一次看見肉眼之外的結構。他觀察軟木時使用了「cell」這個詞，後來成為生物學中「細胞」概念的重要起點。',
-  compare:'Hooke 的顯微鏡是早期複式顯微鏡，照明、鏡片品質、穩定度與倍率切換都不如現代儀器；它更像一台精巧的探索工具，而現代顯微鏡則是可標準化操作、可精準調焦與控制光線的實驗設備。'
+  compare:'Hooke 的顯微鏡是早期複式顯微鏡，照明、鏡片品質、穩定度與倍率切換都不如現代儀器；它更像一台精巧的探索工具，而現代顯微鏡則是可標準化操作、可精準調焦與控制光線的實驗設備。',
+  portrait:{
+   src:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/13_Portrait_of_Robert_Hooke.JPG/960px-13_Portrait_of_Robert_Hooke.JPG',
+   alt:'Robert Hooke memorial portrait',
+   credit:'Robert Hooke reconstructed memorial portrait · Wikimedia Commons'
+  },
+  videos:[
+   {id:'0d-bZrK1sS8',title:'複式顯微鏡為什麼上下左右顛倒？',source:'YouTube：nemo的生物教室'}
+  ]
  }
 };
 const parts=[
@@ -61,7 +74,9 @@ function setModel(key){
  $('#modelFrame').title=model.title;
  $('.model-credit').href=model.href;
  $('.model-credit').textContent=model.credit;
- $('#modelStory').innerHTML=`<h2>${model.title}</h2><p>${model.story}</p><p>${model.compare}</p>`;
+ const portrait=model.portrait?`<figure class="hooke-portrait"><img src="${model.portrait.src}" alt="${model.portrait.alt}"><figcaption>${model.portrait.credit}</figcaption></figure>`:'';
+ const videos=model.videos?.length?`<div class="model-video-grid">${model.videos.map(video=>`<a class="model-video-card" href="https://www.youtube.com/watch?v=${video.id}" target="_blank" rel="noopener"><img src="https://i.ytimg.com/vi/${video.id}/hqdefault.jpg" alt="${video.title} 縮圖"><span><b>${video.title}</b><small>${video.source}</small></span></a>`).join('')}</div>`:'';
+ $('#modelStory').innerHTML=`<h2>${model.title}</h2>${portrait}<p>${model.story}</p><p>${model.compare}</p>${videos}`;
  $$('.model-option').forEach(btn=>btn.classList.toggle('active',btn.dataset.model===key));
 }
 setModel('modern');
@@ -92,12 +107,12 @@ function syncControls(){const video=isVideoSpecimen(),total=video?'依影片':st
 function isViewerVisible(){return !$('#viewerModal').classList.contains('hidden')||$('#scene').classList.contains('missions-mode')}
 function update(){syncControls();if(isViewerVisible())renderView();updateFeedback();}
 function updateFeedback(){if(isVideoSpecimen()){const centered=Math.hypot(state.x,state.y)<.25;$('#feedback').textContent=centered?'影片模式：倍率依影片為主，粗調、細調、光圈與反光鏡已鎖定，可移動載玻片觀察不同位置。':'影片模式：倍率依影片為主，可用載玻片方向鍵移動視野。';return}const err=focusError(),b=brightness();let t='';if(state.objective===40&&Math.abs(state.coarse-specimens[state.specimen].ideal.c)>5)t='高倍下不應大幅使用粗調節輪，以免物鏡碰撞玻片。';else if(b<.4)t='視野太暗：調整反光鏡或開大光圈。';else if(b>1.05)t='光線過強：縮小光圈可提高對比。';else if(err>35)t='影像非常模糊，低倍時先用粗調節輪找像。';else if(err>12)t='已看到標本，再用細調節輪讓邊緣清晰。';else if(Math.hypot(state.x,state.y)>.55)t='影像清楚，但標本未置中；移動載玻片。';else t='影像清楚且置中，可以觀察或切換更高倍率。';$('#feedback').textContent=t;}
-function renderView(){const sp=specimens[state.specimen],video=isVideoSpecimen(),total=state.objective*state.eyepiece,err=focusError(),b=brightness(),view=$('#microscopeView');let frame=$('#videoView');if(video){view.style.backgroundImage='none';view.style.filter='none';view.style.backgroundPosition='center';view.style.backgroundSize='cover';if(!frame){frame=document.createElement('iframe');frame.id='videoView';frame.className='video-view';frame.allow='autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';frame.allowFullscreen=true;view.prepend(frame)}const src=`https://www.youtube.com/embed/${sp.youtube}?start=${sp.start}&autoplay=1&rel=0&playsinline=1`;if(frame.dataset.src!==src){frame.src=src;frame.dataset.src=src}frame.style.transform=`translate(${state.x*16}%,${state.y*16}%) scale(1.18)`;$('#viewTitle').textContent=sp.name;$('#viewInfo').textContent=`倍率依影片為主｜從 ${sp.start} 秒開始播放｜調焦與調光鎖定`;$('#scaleBar b').textContent='影片倍率';$('#scaleBar span').style.width='72px';syncControls();return}if(frame){frame.remove()}view.style.backgroundImage=`url("${sp.url}")`;view.style.backgroundSize=`${110+state.objective*5}%`;view.style.backgroundPosition=`${50-state.x*35}% ${50+state.y*35}%`;view.style.filter=`brightness(${b}) contrast(${.75+state.aperture/160}) blur(${Math.min(14,err/6)}px) saturate(${.8+b*.35})`;$('#viewTitle').textContent=sp.name;$('#viewInfo').textContent=`${total}×｜亮度 ${b<.4?'不足':b>1.05?'過強':'適中'}｜${err<12?'清晰':err<35?'接近焦點':'模糊'}`;$('#scaleBar b').textContent=state.objective===4?'500 µm':state.objective===10?'200 µm':'50 µm';$('#scaleBar span').style.width=state.objective===4?'110px':state.objective===10?'80px':'55px';syncControls();}
+function renderView(){const sp=specimens[state.specimen],video=isVideoSpecimen(),total=state.objective*state.eyepiece,err=focusError(),b=brightness(),view=$('#microscopeView');let frame=$('#videoView');if(video){view.style.backgroundImage='none';view.style.filter='none';view.style.backgroundPosition='center';view.style.backgroundSize='cover';if(!frame){frame=document.createElement('iframe');frame.id='videoView';frame.className='video-view';frame.allow='autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';frame.allowFullscreen=true;view.prepend(frame)}const src=`https://www.youtube.com/embed/${sp.youtube}?start=${sp.start}&autoplay=1&rel=0&playsinline=1`;if(frame.dataset.src!==src){frame.src=src;frame.dataset.src=src}frame.style.transform=`translate(${-state.x*16}%,${-state.y*16}%) scale(1.18)`;$('#viewTitle').textContent=sp.name;$('#viewInfo').textContent=`倍率依影片為主｜從 ${sp.start} 秒開始播放｜調焦與調光鎖定`;$('#scaleBar b').textContent='影片倍率';$('#scaleBar span').style.width='72px';syncControls();return}if(frame){frame.remove()}view.style.backgroundImage=`url("${sp.url}")`;view.style.backgroundSize=`${110+state.objective*5}%`;view.style.backgroundPosition=`${50-state.x*35}% ${50+state.y*35}%`;view.style.filter=`brightness(${b}) contrast(${.75+state.aperture/160}) blur(${Math.min(14,err/6)}px) saturate(${.8+b*.35})`;$('#viewTitle').textContent=sp.name;$('#viewInfo').textContent=`${total}×｜亮度 ${b<.4?'不足':b>1.05?'過強':'適中'}｜${err<12?'清晰':err<35?'接近焦點':'模糊'}`;$('#scaleBar b').textContent=state.objective===4?'500 µm':state.objective===10?'200 µm':'50 µm';$('#scaleBar span').style.width=state.objective===4?'110px':state.objective===10?'80px':'55px';syncControls();}
 function dockViewer(mode){const shell=$('.viewer-shell');const inline=mode==='inline';if(inline){$('#inlineViewerHost').append(shell);$('#inlineViewerHost').classList.remove('hidden');$('#viewerModal').classList.add('hidden')}else{$('#viewerModal').append(shell);$('#inlineViewerHost').classList.add('hidden');}shell.classList.toggle('inline-viewer-shell',inline);$('#closeViewer').classList.toggle('hidden',inline);}
 function showView(){state.viewed=true;dockViewer('modal');$('#viewerModal').classList.remove('hidden');renderView();}
 function setObjective(v){state.objective=v;update()}
 function setRange(id,value){state[id]=+value;update()}
-function moveStage(d,step=.12){if(d==='up')state.y-=step;if(d==='down')state.y+=step;if(d==='left')state.x+=step;if(d==='right')state.x-=step;if(d==='center')state.x=state.y=0;state.x=Math.max(-1,Math.min(1,state.x));state.y=Math.max(-1,Math.min(1,state.y));update()}
+function moveStage(d,step=.12){if(d==='up')state.y+=step;if(d==='down')state.y-=step;if(d==='left')state.x-=step;if(d==='right')state.x+=step;if(d==='center')state.x=state.y=0;state.x=Math.max(-1,Math.min(1,state.x));state.y=Math.max(-1,Math.min(1,state.y));update()}
 function setStageMode(tab){const missions=tab==='missions';$('#scene').classList.toggle('missions-mode',missions);$('#scene').parentElement.classList.toggle('mission-stage-card',missions);setPartsMode(tab==='parts');if(missions){state.viewed=true;dockViewer('inline');renderView()}else{if(!$('#viewerModal').contains($('.viewer-shell')))dockViewer('modal');const frame=$('#videoView');if(frame)frame.remove();}}
 $$('.tab').forEach(b=>b.onclick=()=>{$$('.tab,.tab-panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.tab).classList.add('active');setStageMode(b.dataset.tab)});
 $$('.view-objective').forEach(b=>b.onclick=()=>setObjective(+b.dataset.viewObjective));
