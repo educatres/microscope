@@ -11,14 +11,25 @@
 
 * { box-sizing: border-box; }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  touch-action: manipulation;
+}
+
 body {
   margin: 0;
   font-family: Inter, "Noto Sans TC", system-ui, sans-serif;
   background: linear-gradient(135deg, #edf7f4, #eef1f8);
   color: var(--ink);
+  overscroll-behavior: none;
 }
 
 button, select, input { font: inherit; }
+
+button, select, input, .tab, .dpad, .viewer-controls {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
 
 .topbar {
   display: flex;
