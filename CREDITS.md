@@ -7,7 +7,6 @@
 - 渦蟲：**Planaria Flatworm Labeled Microscope.jpg**，作者 Iceclanl，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Planaria_Flatworm_Labeled_Microscope.jpg
 - 藻類：**Mikrofoto.de-alge2.jpg**，作者 Frank Fox，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Mikrofoto.de-alge2.jpg
 - 樹葉／氣孔：**Stomata observed on the rear side of a leaf.jpg**，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Stomata_observed_on_the_rear_side_of_a_leaf.jpg
-- 頭髮：**Hair under the microscope.jpg**，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Hair_under_the_microscope.jpg
 - 動物細胞：**Cheekcells stained.jpg**，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Cheekcells_stained.jpg
 - 植物細胞：**Elodea cells under microscope.jpg**，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Elodea_cells_under_microscope.jpg
 - 軟木塞：**Cork Micrographia Hooke.png**，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Cork_Micrographia_Hooke.png

@@ -6,7 +6,6 @@ const specimens={
  planaria:{name:'渦蟲',url:'https://commons.wikimedia.org/wiki/Special:FilePath/Planaria%20Flatworm%20Labeled%20Microscope.jpg?width=1600',ideal:{c:61,f:47},desc:'扁形動物，可觀察眼點與分枝消化腔。'},
  algae:{name:'藻類',url:'https://commons.wikimedia.org/wiki/Special:FilePath/Mikrofoto.de-alge2.jpg?width=1600',ideal:{c:51,f:60},desc:'柵藻等綠藻，可觀察細胞群體排列。'},
  leaf:{name:'樹葉／氣孔',url:'https://commons.wikimedia.org/wiki/Special:FilePath/Stomata%20observed%20on%20the%20rear%20side%20of%20a%20leaf.jpg?width=1600',ideal:{c:53,f:55},desc:'葉片背面的氣孔，可觀察保衛細胞與孔隙。'},
- hair:{name:'頭髮',url:'https://commons.wikimedia.org/wiki/Special:FilePath/Hair%20under%20the%20microscope.jpg?width=1600',ideal:{c:49,f:53},desc:'頭髮在顯微鏡下可見表面紋理與纖維結構。'},
  animalCell:{name:'動物細胞',url:'https://commons.wikimedia.org/wiki/Special:FilePath/Cheekcells%20stained.jpg?width=1600',ideal:{c:57,f:54},desc:'染色人類口腔上皮細胞，可辨認細胞核與細胞質。'},
  plantCell:{name:'植物細胞',url:'https://commons.wikimedia.org/wiki/Special:FilePath/Elodea%20cells%20under%20microscope.jpg?width=1600',ideal:{c:52,f:58},desc:'黑藻葉細胞，可觀察規則細胞壁與葉綠體。'},
  cork:{name:'軟木塞',url:'https://commons.wikimedia.org/wiki/Special:FilePath/Cork%20Micrographia%20Hooke.png?width=1600',ideal:{c:50,f:50},desc:'Hooke 在 Micrographia 中描繪的軟木結構，是「cell」一詞的重要來源。'},
