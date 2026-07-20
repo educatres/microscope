@@ -749,6 +749,97 @@ output {
 .viewer-controls .xy-controls { text-align: center; }
 .parts-list, .tutorial-box ol { font-size: 15px; }
 
+.source-section {
+  margin: 0 24px 8px;
+  padding: clamp(20px, 4vw, 34px);
+  border: 1px solid rgba(255,255,255,.8);
+  border-radius: 24px;
+  background: rgba(255,255,255,.93);
+  box-shadow: var(--shadow);
+}
+
+.source-heading {
+  display: grid;
+  grid-template-columns: minmax(190px, .5fr) minmax(280px, 1.5fr);
+  gap: 24px;
+  align-items: end;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.source-heading h2 {
+  margin: 3px 0 0;
+  font-size: clamp(22px, 3vw, 30px);
+}
+
+.source-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.source-kicker {
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.source-groups {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding-top: 18px;
+}
+
+.source-groups details {
+  align-self: start;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #f7fbfa;
+  overflow: hidden;
+}
+
+.source-groups summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 15px;
+  color: var(--ink);
+  font-weight: 800;
+  cursor: pointer;
+  list-style: none;
+}
+
+.source-groups summary::-webkit-details-marker { display: none; }
+
+.source-groups summary::before {
+  content: "+";
+  color: var(--accent);
+}
+
+.source-groups details[open] summary::before { content: "−"; }
+
+.source-groups summary span {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.source-groups ul {
+  margin: 0;
+  padding: 0 16px 14px 38px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.source-groups li + li { margin-top: 7px; }
+.source-section a, footer a { color: var(--accent); }
+.source-section a { text-underline-offset: 3px; }
+
 footer {
   text-align: center;
   padding: 18px;
@@ -757,6 +848,12 @@ footer {
 }
 
 footer a { color: var(--accent); }
+
+@media (max-width: 720px) {
+  .source-section { margin: 0 12px 8px; }
+  .source-heading, .source-groups { grid-template-columns: 1fr; }
+  .source-heading { gap: 10px; }
+}
 
 @media (max-width: 900px) {
   .layout {

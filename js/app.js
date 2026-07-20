@@ -10,7 +10,8 @@ const specimens={
  plantCell:{name:'植物細胞',url:'https://commons.wikimedia.org/wiki/Special:FilePath/Elodea%20cells%20under%20microscope.jpg?width=1600',ideal:{c:52,f:58},desc:'黑藻葉細胞，可觀察規則細胞壁與葉綠體。'},
  cork:{name:'軟木塞',url:'https://commons.wikimedia.org/wiki/Special:FilePath/Cork%20Micrographia%20Hooke.png?width=1600',ideal:{c:50,f:50},desc:'Hooke 在 Micrographia 中描繪的軟木結構，是「cell」一詞的重要來源。'},
  videoA:{name:'影片玻片 A',type:'video',youtube:'io731XY8fH8',start:38,desc:'YouTube 顯微觀察影片，從 0:38 開始播放，倍率依影片內容為主。'},
- videoB:{name:'影片玻片 B',type:'video',youtube:'qaElp0M3NZw',start:25,desc:'YouTube 顯微觀察影片，從 0:25 開始播放，倍率依影片內容為主。'}
+ videoB:{name:'影片玻片 B',type:'video',youtube:'qaElp0M3NZw',start:25,desc:'YouTube 顯微觀察影片，從 0:25 開始播放，倍率依影片內容為主。'},
+ videoC:{name:'影片玻片 C｜Meet the Microcosmos',type:'video',youtube:'wS2mdmt4JPw',start:35,desc:'Journey to the Microcosmos 的顯微觀察影片，從 0:35 開始播放，倍率依影片內容為主。'}
 };
 const models={
  modern:{

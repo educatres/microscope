@@ -17,6 +17,7 @@
 
 - 影片玻片 A：YouTube，https://www.youtube.com/watch?v=io731XY8fH8，從 0:38 開始播放。
 - 影片玻片 B：YouTube，https://www.youtube.com/watch?v=qaElp0M3NZw，從 0:25 開始播放。
+- 影片玻片 C：**Meet the Microcosmos**，YouTube，Journey to the Microcosmos。https://www.youtube.com/watch?v=wS2mdmt4JPw，從 0:35 開始播放。
 - Hooke 顯微鏡延伸影片：**用一滴水珠，告訴你為什麼複式顯微鏡是上下左右顛倒 !? ft.虎克的《微物圖誌》**，YouTube，nemo的生物教室。https://www.youtube.com/watch?v=0d-bZrK1sS8
 - 現代複式顯微鏡延伸影片：**國中生物｜CH1-5 認識顯微鏡**，YouTube，台菜一姐。https://www.youtube.com/watch?v=29guENxstn4
 - 現代複式顯微鏡延伸影片：**複式顯微鏡操作流程教學v3**，YouTube，Chihhsiang Chien。https://www.youtube.com/watch?v=7reBPZIShS4
