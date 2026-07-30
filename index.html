@@ -60,11 +60,12 @@
           <button class="view-objective active" data-view-objective="4">4×</button>
           <button class="view-objective" data-view-objective="10">10×</button>
           <button class="view-objective" data-view-objective="40">40×</button>
+          <button class="view-objective" data-view-objective="60">60×</button>
         </div>
         <label>粗調節輪 <output id="viewCoarseOut">0</output><input id="viewCoarse" type="range" min="0" max="100" value="0"></label>
         <label>細調節輪 <output id="viewFineOut">0</output><input id="viewFine" type="range" min="0" max="100" value="0"></label>
         <label>光圈大小 <output id="viewApertureOut">65%</output><input id="viewAperture" type="range" min="10" max="100" value="65"></label>
-        <label>反光鏡角度 <output id="viewMirrorOut">50</output><input id="viewMirror" type="range" min="0" max="100" value="50"></label>
+        <label>燈泡亮度 <output id="viewBulbBrightnessOut">60%</output><input id="viewBulbBrightness" type="range" min="0" max="100" value="60"></label>
         <div class="xy-controls">
           <span>移動載玻片</span>
           <div class="dpad"><button data-view-move="up">▲</button><button data-view-move="left">◀</button><button data-view-move="center">◎</button><button data-view-move="right">▶</button><button data-view-move="down">▼</button></div>
@@ -75,7 +76,7 @@
   </div>
 </div>
 
-<div id="tutorial" class="modal hidden"><div class="tutorial-box"><button id="closeTutorial" class="close">×</button><h2>顯微鏡操作六步驟</h2><ol><li>選擇玻片並固定在載物臺。</li><li>轉到 4× 低倍物鏡。</li><li>調整反光鏡與光圈，使視野明亮但不過曝。</li><li>使用粗調節輪找到影像。</li><li>用細調節輪讓輪廓清晰。</li><li>將目標移至中央後，再切換高倍並只用細調。</li></ol><button id="startTutorial" class="primary">開始練習</button></div></div>
+<div id="tutorial" class="modal hidden"><div class="tutorial-box"><button id="closeTutorial" class="close">×</button><h2>顯微鏡操作六步驟</h2><ol><li>選擇玻片並固定在載物臺。</li><li>轉到 4× 低倍物鏡。</li><li>調整燈泡亮度與光圈，使視野明亮但不過曝。</li><li>使用粗調節輪找到影像。</li><li>用細調節輪讓輪廓清晰。</li><li>將目標移至中央後，再切換高倍並只用細調。</li></ol><button id="startTutorial" class="primary">開始練習</button></div></div>
 
 <section class="source-section" aria-labelledby="sourceTitle">
   <div class="source-heading">
@@ -84,8 +85,13 @@
   </div>
   <div class="source-groups">
     <details open>
-      <summary>顯微觀察圖片 <span>8</span></summary>
+      <summary>顯微觀察圖片 <span>13</span></summary>
       <ul>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Kalanchoe_leaf.jpg" target="_blank" rel="noopener">Kalanchoe 葉片下表皮｜400×</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Plant_leaf_epidermis_(255_17)_Lower_epidermis_of_lime_tree_(Tilia).jpg" target="_blank" rel="noopener">Tilia 椴樹下表皮｜600×</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Human_Cheek_Cells_(Iodine_Stain).jpg" target="_blank" rel="noopener">碘液染色口腔細胞｜400×</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Paramecium_400x.jpg" target="_blank" rel="noopener">草履蟲 Paramecium｜400×</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:20100306_204728_Euglena.jpg" target="_blank" rel="noopener">眼蟲 Euglena｜60× 物鏡、15× 目鏡</a></li>
         <li><a href="https://commons.wikimedia.org/wiki/File:Paramecium_sp.jpg" target="_blank" rel="noopener">草履蟲｜Paramecium sp.jpg</a></li>
         <li><a href="https://commons.wikimedia.org/wiki/File:Euglena-1.jpg" target="_blank" rel="noopener">眼蟲｜Euglena-1.jpg</a></li>
         <li><a href="https://commons.wikimedia.org/wiki/File:Planaria_Flatworm_Labeled_Microscope.jpg" target="_blank" rel="noopener">渦蟲｜Planaria Flatworm Labeled Microscope.jpg</a></li>

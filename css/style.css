@@ -725,7 +725,7 @@ output {
   transform: none;
 }
 
-.viewer-controls .button-grid { grid-template-columns: repeat(3, 1fr); }
+.viewer-controls .button-grid { grid-template-columns: repeat(4, 1fr); }
 .viewer-controls .xy-controls { text-align: center; }
 .parts-list, .tutorial-box ol { font-size: 15px; }
 

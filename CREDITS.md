@@ -3,6 +3,11 @@
 本教材透過 Wikimedia Commons 的 `Special:FilePath` 載入真實顯微影像。使用或再散布前，請依各檔案頁所列授權條款標示作者與來源。
 
 - 草履蟲：**Paramecium sp.jpg**，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Paramecium_sp.jpg
+- Kalanchoe 葉片下表皮：**Kalanchoe leaf.jpg**，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Kalanchoe_leaf.jpg
+- Tilia 椴樹下表皮：**Plant leaf epidermis (255 17) Lower epidermis of lime tree (Tilia).jpg**，作者 Josef Reischig，Wikimedia Commons。授權：CC BY-SA 3.0。檔案頁：https://commons.wikimedia.org/wiki/File:Plant_leaf_epidermis_(255_17)_Lower_epidermis_of_lime_tree_(Tilia).jpg
+- 碘液染色口腔細胞：**Human Cheek Cells (Iodine Stain).jpg**，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Human_Cheek_Cells_(Iodine_Stain).jpg
+- 草履蟲 400×：**Paramecium 400x.jpg**，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Paramecium_400x.jpg
+- 眼蟲：**20100306 204728 Euglena.jpg**，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:20100306_204728_Euglena.jpg
 - 眼蟲：**Euglena-1.jpg**，作者 Fritzmann2002，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Euglena-1.jpg
 - 渦蟲：**Planaria Flatworm Labeled Microscope.jpg**，作者 Iceclanl，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Planaria_Flatworm_Labeled_Microscope.jpg
 - 藻類：**Mikrofoto.de-alge2.jpg**，作者 Frank Fox，Wikimedia Commons。檔案頁：https://commons.wikimedia.org/wiki/File:Mikrofoto.de-alge2.jpg
