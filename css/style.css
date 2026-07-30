@@ -508,27 +508,6 @@ output {
   outline: 0;
 }
 
-.score {
-  padding: 12px;
-  background: #fff4e5;
-  border-radius: 12px;
-}
-
-.score strong {
-  font-size: 24px;
-  color: #bd6516;
-}
-
-#missionList {
-  padding-left: 24px;
-  line-height: 1.6;
-}
-
-#missionList li.done {
-  color: #168164;
-  text-decoration: line-through;
-}
-
 .modal {
   position: fixed;
   inset: 0;
@@ -562,10 +541,11 @@ output {
 }
 
 .inline-viewer-shell .eyepiece-ring {
-  width: min(40vw, 450px);
+  width: min(62vw, 680px, calc(100vh - 220px));
 }
 
 .inline-viewer-shell .viewer-layout {
+  grid-template-columns: 1fr;
   gap: 14px;
 }
 
@@ -623,7 +603,7 @@ output {
 
 .eyepiece-ring {
   margin: auto;
-  width: min(58vw, 560px);
+  width: min(62vw, 640px);
   aspect-ratio: 1;
   border-radius: 50%;
   background: #080b0d;
@@ -874,8 +854,12 @@ footer a { color: var(--accent); }
   .viewer-layout { grid-template-columns: 1fr; }
 
   .eyepiece-ring {
-    width: min(80vw, 520px);
+    width: min(86vw, 600px);
     border-width: 12px;
+  }
+
+  .inline-viewer-shell .eyepiece-ring {
+    width: min(86vw, 600px, calc(100vh - 190px));
   }
 
   .viewer-controls {

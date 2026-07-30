@@ -6,9 +6,9 @@
 
 - GitHub Repository: https://github.com/educatres/microscope
 - GitHub Pages: https://educatres.github.io/microscope/
-- 直接進入任務模式: https://educatres.github.io/microscope/?mode=missions
+- 直接進入顯微鏡視野: https://educatres.github.io/microscope/?mode=missions
 
-手機與 iPad 會自動略過 3D 模型並直接進入任務模式，以避免 iOS／行動裝置的 WebGL 載入問題。
+手機與 iPad 會自動略過 3D 模型並直接進入顯微鏡視野，以避免 iOS／行動裝置的 WebGL 載入問題。
 
 ## 功能
 
@@ -18,7 +18,7 @@
 - 載玻片移動與視野反向移動
 - 圓形目鏡視野、倍率縮放、亮度與模糊模擬
 - 四種真實顯微影像玻片
-- 六階段操作任務與即時回饋
+- 獨立顯微鏡視野分頁與即時操作回饋
 - RWD，可在桌機、平板與手機使用
 
 ## 本機預覽

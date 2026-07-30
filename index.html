@@ -25,7 +25,7 @@
     <nav class="tabs" aria-label="功能分頁">
       <button class="tab active" data-tab="operate">顯微鏡的外觀</button>
       <button class="tab" data-tab="parts">部件</button>
-      <button class="tab" data-tab="missions">任務</button>
+      <button class="tab" data-tab="missions">顯微鏡視野</button>
       <button class="tab" data-tab="learn">原理</button>
     </nav>
 
@@ -36,8 +36,7 @@
 
     <div class="tab-panel" id="parts"><div id="partsList" class="parts-list"></div></div>
     <div class="tab-panel" id="missions">
-      <div class="score">完成度 <strong id="score">0</strong>/6</div><ol id="missionList"></ol>
-      <button id="checkMission" class="primary">檢查目前操作</button>
+      <div id="viewerControlsHost"></div>
     </div>
     <div class="tab-panel" id="learn">
       <article><h2>成像與倍率</h2><p>複式顯微鏡的總倍率＝目鏡倍率 × 物鏡倍率。倍率越高，視野通常越小、亮度越低，景物移動也更明顯。</p><h2>為何視野方向相反？</h2><p>顯微鏡形成上下、左右相反的倒像。因此載玻片向右移，視野中的影像會向左移。</p><h2>正確操作重點</h2><p>先用低倍物鏡、從側面確認物鏡不會撞到玻片；利用粗調找到影像，再用細調使輪廓清楚。切到高倍後只應使用細調節輪。</p></article>
@@ -49,7 +48,7 @@
   <div class="viewer-shell">
     <button id="closeViewer" class="close">×</button>
     <div class="viewer-layout">
-      <div>
+      <div class="viewer-visual">
         <div class="eyepiece-ring"><div id="microscopeView" class="microscope-view"><div class="crosshair"></div><div id="scaleBar" class="scale-bar"><span></span><b>200 µm</b></div></div></div>
         <div class="viewer-readout"><strong id="viewTitle">草履蟲</strong><span id="viewInfo">40×｜亮度適中｜尚未對焦</span></div>
       </div>
@@ -62,8 +61,8 @@
           <button class="view-objective" data-view-objective="10">10×</button>
           <button class="view-objective" data-view-objective="40">40×</button>
         </div>
-        <label>粗調節輪 <output id="viewCoarseOut">50</output><input id="viewCoarse" type="range" min="0" max="100" value="50"></label>
-        <label>細調節輪 <output id="viewFineOut">50</output><input id="viewFine" type="range" min="0" max="100" value="50"></label>
+        <label>粗調節輪 <output id="viewCoarseOut">0</output><input id="viewCoarse" type="range" min="0" max="100" value="0"></label>
+        <label>細調節輪 <output id="viewFineOut">0</output><input id="viewFine" type="range" min="0" max="100" value="0"></label>
         <label>光圈大小 <output id="viewApertureOut">65%</output><input id="viewAperture" type="range" min="10" max="100" value="65"></label>
         <label>反光鏡角度 <output id="viewMirrorOut">50</output><input id="viewMirror" type="range" min="0" max="100" value="50"></label>
         <div class="xy-controls">
