@@ -424,6 +424,45 @@ input[type=range] {
   accent-color: var(--accent);
 }
 
+/* Large touch targets for the focus, aperture and bulb controls on iPad. */
+.viewer-controls input[type=range] {
+  height: 42px;
+  margin: 2px 0 5px;
+  cursor: pointer;
+}
+
+.viewer-controls input[type=range]::-webkit-slider-runnable-track {
+  height: 10px;
+  border-radius: 99px;
+  background: #c9dddd;
+}
+
+.viewer-controls input[type=range]::-webkit-slider-thumb {
+  width: 28px;
+  height: 28px;
+  margin-top: -9px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 2px 8px rgba(24,50,58,.25);
+  -webkit-appearance: none;
+}
+
+.viewer-controls input[type=range]::-moz-range-track {
+  height: 10px;
+  border-radius: 99px;
+  background: #c9dddd;
+}
+
+.viewer-controls input[type=range]::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 2px 8px rgba(24,50,58,.25);
+}
+
 output {
   float: right;
   color: var(--accent);
