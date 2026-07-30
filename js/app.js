@@ -1,4 +1,11 @@
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const pageParams=new URLSearchParams(location.search);
+const missionModeRequested=pageParams.get('mode')==='missions';
+const userAgent=navigator.userAgent||'';
+const isIPad=/iPad/i.test(userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+const isMobilePhone=navigator.userAgentData?.mobile===true||/Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Mobi/i.test(userAgent);
+const isMobileOrIPad=isIPad||isMobilePhone;
+const startInMissionMode=missionModeRequested||isMobileOrIPad;
 const state={specimen:'paramecium',objective:4,eyepiece:10,coarse:50,fine:50,aperture:65,mirror:50,x:0,y:0,viewed:false};
 const specimens={
  paramecium:{name:'草履蟲',url:'https://commons.wikimedia.org/wiki/Special:FilePath/Paramecium%20sp.jpg?width=1600',ideal:{c:56,f:52},desc:'纖毛蟲，體表密布纖毛。'},
@@ -68,11 +75,16 @@ function mountOnlineModel(){
 }
 mountOnlineModel();
 
-function setModel(key){
+let activeModelKey='modern',modelLoaded=false;
+function setModel(key,{load=true}={}){
  const model=models[key];
- const src=`https://sketchfab.com/models/${model.id}/embed?autostart=1&preload=1&ui_theme=dark&ui_infos=0&ui_watermark=0`;
- $('#modelFrame').src=src;
- $('#modelFrame').title=model.title;
+ activeModelKey=key;
+ if(load&&!isMobileOrIPad){
+  const src=`https://sketchfab.com/models/${model.id}/embed?autostart=1&max_texture_size=2048&ui_theme=dark&ui_infos=0&ui_watermark=0`;
+  $('#modelFrame').src=src;
+  modelLoaded=true;
+ }
+ $('#modelFrame').title=isMobileOrIPad?`${model.title}（行動裝置使用靜態圖）`:model.title;
  $('.model-credit').href=model.href;
  $('.model-credit').textContent=model.credit;
  const portrait=model.portrait?`<figure class="hooke-portrait"><img src="${model.portrait.src}" alt="${model.portrait.alt}"><figcaption>${model.portrait.credit}</figcaption></figure>`:'';
@@ -80,7 +92,7 @@ function setModel(key){
  $('#modelStory').innerHTML=`<h2>${model.title}</h2>${portrait}<p>${model.story}</p><p>${model.compare}</p>${videos}`;
  $$('.model-option').forEach(btn=>btn.classList.toggle('active',btn.dataset.model===key));
 }
-setModel('modern');
+setModel('modern',{load:!startInMissionMode});
 $$('.model-option').forEach(btn=>btn.onclick=()=>setModel(btn.dataset.model));
 
 function setPartHighlight(index){
@@ -114,8 +126,9 @@ function showView(){state.viewed=true;dockViewer('modal');$('#viewerModal').clas
 function setObjective(v){state.objective=v;update()}
 function setRange(id,value){state[id]=+value;update()}
 function moveStage(d,step=.12){if(d==='up')state.y-=step;if(d==='down')state.y+=step;if(d==='left')state.x+=step;if(d==='right')state.x-=step;if(d==='center')state.x=state.y=0;state.x=Math.max(-1,Math.min(1,state.x));state.y=Math.max(-1,Math.min(1,state.y));update()}
-function setStageMode(tab){const missions=tab==='missions';$('#scene').classList.toggle('missions-mode',missions);$('#scene').parentElement.classList.toggle('mission-stage-card',missions);setPartsMode(tab==='parts');if(missions){state.viewed=true;dockViewer('inline');renderView()}else{if(!$('#viewerModal').contains($('.viewer-shell')))dockViewer('modal');const frame=$('#videoView');if(frame)frame.remove();}}
-$$('.tab').forEach(b=>b.onclick=()=>{$$('.tab,.tab-panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.tab).classList.add('active');setStageMode(b.dataset.tab)});
+function setStageMode(tab){const missions=tab==='missions';$('#scene').classList.toggle('missions-mode',missions);$('#scene').parentElement.classList.toggle('mission-stage-card',missions);setPartsMode(tab==='parts'||(isMobileOrIPad&&!missions));if(missions){state.viewed=true;dockViewer('inline');renderView()}else{if(!$('#viewerModal').contains($('.viewer-shell')))dockViewer('modal');const frame=$('#videoView');if(frame)frame.remove();if(!isMobileOrIPad&&!modelLoaded&&(tab==='operate'||tab==='learn'))setModel(activeModelKey)}}
+function activateTab(tab,{syncUrl=true}={}){const button=$(`.tab[data-tab="${tab}"]`),panel=$('#'+tab);if(!button||!panel)return;$$('.tab,.tab-panel').forEach(x=>x.classList.remove('active'));button.classList.add('active');panel.classList.add('active');setStageMode(tab);if(syncUrl){const url=new URL(location.href);if(tab==='missions')url.searchParams.set('mode','missions');else url.searchParams.delete('mode');history.replaceState(null,'',url)}}
+$$('.tab').forEach(b=>b.onclick=()=>activateTab(b.dataset.tab));
 $$('.view-objective').forEach(b=>b.onclick=()=>setObjective(+b.dataset.viewObjective));
 ['coarse','fine','aperture','mirror'].forEach(id=>{$('#view'+id[0].toUpperCase()+id.slice(1)).oninput=e=>setRange(id,e.target.value)});
 function setSpecimen(value){state.specimen=value;state.x=state.y=0;update()}
@@ -128,4 +141,5 @@ let lastTouchEnd=0;document.addEventListener('touchend',e=>{const now=Date.now()
 $('#resetBtn').onclick=()=>location.reload();
 const missions=[['選擇任一玻片',()=>!!state.specimen],['使用 4× 低倍物鏡',()=>state.objective===4],['將亮度調到適中',()=>{const b=brightness();return b>=.4&&b<=1.05}],['找到接近焦點的影像',()=>focusError()<35],['使影像清晰',()=>focusError()<12],['將標本移到視野中央',()=>focusError()<12&&Math.hypot(state.x,state.y)<.25]];
 $('#missionList').innerHTML=missions.map(m=>`<li>${m[0]}</li>`).join('');$('#checkMission').onclick=()=>{let n=0;[...$('#missionList').children].forEach((li,i)=>{const ok=missions[i][1]();li.classList.toggle('done',ok);if(ok)n++});$('#score').textContent=n;if(n===6)$('#feedback').textContent='挑戰完成！你已掌握低倍找像、調光、對焦與置中的基本流程。'};
+activateTab(startInMissionMode?'missions':'operate',{syncUrl:false});
 update();

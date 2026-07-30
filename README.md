@@ -6,6 +6,9 @@
 
 - GitHub Repository: https://github.com/educatres/microscope
 - GitHub Pages: https://educatres.github.io/microscope/
+- 直接進入任務模式: https://educatres.github.io/microscope/?mode=missions
+
+手機與 iPad 會自動略過 3D 模型並直接進入任務模式，以避免 iOS／行動裝置的 WebGL 載入問題。
 
 ## 功能
 
